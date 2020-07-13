@@ -1,51 +1,79 @@
-import React, { Component } from "react";
-import { Card, Text, Input, Button } from '@ui-kitten/components';
+import React, { Component } from 'react';
+import { StyleSheet, ImageBackground, View, Image } from 'react-native';
+import { Card, Text, Input, Button, withStyles } from '@ui-kitten/components';
 import { Container, Row, Col } from 'react-bootstrap';
 
-import concordia from '../../img/concordia.png';
+const Login = (props) => {
+  const styles = StyleSheet.create({
+    logoContainer: {
+      width: '100vw',
+    },
 
-class Login extends Component {
-    render() {
-        return (
-            <div>
-                <Container>
-                    <Row>
-                        <Card>
-                            <Container>
-                                <Row>
-                                    <Col>
-                                        <Text category='h4'>Concordia App</Text>
-                                    </Col>
-                                    <Col>
-                                        <img src={concordia} alt="Concordia"></img>
-                                    </Col>
-                                </Row>
-                            </Container>
-                        </Card>
-                    </Row>
-                    <Row>
-                        <div>
-                            <Text category='h1'>Heyy enne!!</Text>
-                            <Text category='s1'>Duise effe inlogge?</Text>
-                        </div>
-                        <Input
-                            label='Username'
-                            status='primary'
-                        />
-                        <Input
-                            label='Password'
-                            status='primary'
-                        />
-                    </Row>
-                    <Row>
-                        <Button status='primary'>
-                            Login
-                        </Button>
-                    </Row>
-                </Container>
-            </div>
-        )
+    logo: {
+      width: '100px',
+    },
+
+    loginHeaderContainer: {
+      marginTop: '2rem',
+      textAlign: 'center',
+    },
+
+    formContainer: {
+      marginTop: '2rem',
+      margin: 'auto',
+      width: '60%',
+    },
+
+    buttonContainer: {
+      marginTop: '5rem',
+      margin: 'auto',
+      width: '60%',
+    },
+
+    primaryText: {
+      color: props.eva.theme['color-primary-100'],
     }
-}
+  });
 
-export default Login;
+  return (
+    <div>
+      <Container>
+        <Row>
+          <Card style={styles.logoContainer}>
+            <Container>
+              <Row>
+                <Col>
+                  <Text category="h4">Concordia App</Text>
+                </Col>
+                <Col>
+                  <Image
+                    style={{
+                      resizeMode: 'contain',
+                      height: 100,
+                    }}
+                    source={require('../../img/concordia.png')}
+                  ></Image>
+                </Col>
+              </Row>
+            </Container>
+          </Card>
+        </Row>
+        <View style={styles.loginHeaderContainer}>
+          <ImageBackground source={require('../../img/LoginBg.png')}>
+            <Text style={styles.primaryText} category="h1">Heyy enne!!</Text>
+            <Text category="s1">Duise effe inlogge?</Text>
+          </ImageBackground>
+        </View>
+        <View style={styles.formContainer}>
+          <Input label="Username" status="primary" />
+          <Input label="Password" status="primary" />
+        </View>
+        <View style={styles.buttonContainer}>
+          <Button status="primary">Login</Button>
+        </View>
+      </Container>
+    </div>
+  );
+};
+
+export default withStyles(Login);
