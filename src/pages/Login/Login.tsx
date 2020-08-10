@@ -3,10 +3,11 @@ import { StyleSheet, ImageBackground, View, Image } from 'react-native';
 import { Card, Text, Input, Button, withStyles } from '@ui-kitten/components';
 import { Container, Row, Col } from 'react-bootstrap';
 
-const Login = (props) => {
+const Login = (props: any) => {
   const styles = StyleSheet.create({
     logoContainer: {
       width: '100vw',
+      textAlign: 'center',
     },
 
     logo: {
@@ -18,8 +19,12 @@ const Login = (props) => {
       textAlign: 'center',
     },
 
+    loginHeaderSubText: {
+      paddingBottom: '7px',
+    },
+
     formContainer: {
-      marginTop: '2rem',
+      marginTop: '5rem',
       margin: 'auto',
       width: '60%',
     },
@@ -32,8 +37,20 @@ const Login = (props) => {
 
     primaryText: {
       color: props.eva.theme['color-primary-100'],
-    }
+    },
   });
+
+  const loginSubText = [
+    'Duise effe inlogge?',
+    'Log maar uns inne dan',
+    'Inlogge duise hie',
+    'Enne!',
+    'Enne, duise effe inlogge?',
+  ];
+
+  const getSubText = () => {
+    return loginSubText[Math.floor(Math.random() * loginSubText.length)];
+  };
 
   return (
     <div>
@@ -60,8 +77,10 @@ const Login = (props) => {
         </Row>
         <View style={styles.loginHeaderContainer}>
           <ImageBackground source={require('../../img/LoginBg.png')}>
-            <Text style={styles.primaryText} category="h1">Heyy enne!!</Text>
-            <Text category="s1">Duise effe inlogge?</Text>
+            <Text style={styles.primaryText} category="h1">
+              Heyy enne!!
+            </Text>
+            <Text style={styles.loginHeaderSubText} category="s1">{getSubText()}</Text>
           </ImageBackground>
         </View>
         <View style={styles.formContainer}>
