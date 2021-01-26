@@ -1,44 +1,11 @@
-import React, { Component } from 'react';
-import { StyleSheet, ImageBackground, View, Image } from 'react-native';
+import React from 'react';
+import { ImageBackground, View, Image } from 'react-native';
 import { Card, Text, Input, Button, withStyles } from '@ui-kitten/components';
 import { Container, Row, Col } from 'react-bootstrap';
+import { styles } from './login.style';
 
 const Login = (props: any) => {
-  const styles = StyleSheet.create({
-    logoContainer: {
-      width: '100vw',
-      textAlign: 'center',
-    },
-
-    logo: {
-      width: '100px',
-    },
-
-    loginHeaderContainer: {
-      marginTop: '2rem',
-      textAlign: 'center',
-    },
-
-    loginHeaderSubText: {
-      paddingBottom: '7px',
-    },
-
-    formContainer: {
-      marginTop: '5rem',
-      margin: 'auto',
-      width: '60%',
-    },
-
-    buttonContainer: {
-      marginTop: '5rem',
-      margin: 'auto',
-      width: '60%',
-    },
-
-    primaryText: {
-      color: props.eva.theme['color-primary-100'],
-    },
-  });
+  const style = styles(props);
 
   const loginSubText = [
     'Duise effe inlogge?',
@@ -49,14 +16,18 @@ const Login = (props: any) => {
   ];
 
   const getSubText = () => {
-    return loginSubText[Math.floor(Math.random() * loginSubText.length)];
+    return loginSubText[Math.floor(Math.random() * Math.floor(loginSubText.length))];
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
   };
 
   return (
     <div>
       <Container>
         <Row>
-          <Card style={styles.logoContainer}>
+          <Card style={style.logoContainer}>
             <Container>
               <Row>
                 <Col>
@@ -75,19 +46,21 @@ const Login = (props: any) => {
             </Container>
           </Card>
         </Row>
-        <View style={styles.loginHeaderContainer}>
+        <View style={style.loginHeaderContainer}>
           <ImageBackground source={require('../../img/LoginBg.png')}>
-            <Text style={styles.primaryText} category="h1">
-              Heyy enne!!
+            <Text style={style.primaryText} category="h1">
+              Welkom
             </Text>
-            <Text style={styles.loginHeaderSubText} category="s1">{getSubText()}</Text>
+            <Text style={style.loginHeaderSubText} category="s1">
+              {getSubText()}
+            </Text>
           </ImageBackground>
         </View>
-        <View style={styles.formContainer}>
+        <View style={style.formContainer}>
           <Input label="Username" status="primary" />
           <Input label="Password" status="primary" />
         </View>
-        <View style={styles.buttonContainer}>
+        <View style={style.buttonContainer}>
           <Button status="primary">Login</Button>
         </View>
       </Container>
